@@ -1,4 +1,5 @@
 import { StyleSheet, ScrollView, Text, View, Linking } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const ContactLink = ({ label, href }: { label: string; href: string }) => (
   <Text style={styles.contactLink} onPress={() => Linking.openURL(href)}>
@@ -7,8 +8,9 @@ const ContactLink = ({ label, href }: { label: string; href: string }) => (
 );
 
 export default function ExploreScreen() {
+  const insets = useSafeAreaInsets();
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container, { paddingTop: insets.top + 8 }]}>
       <View style={styles.header}>
         <Text style={styles.title}>Connect With Me</Text>
         <Text style={styles.subtitle}>Let's collaborate on innovative projects</Text>
@@ -87,7 +89,7 @@ export default function ExploreScreen() {
         </View>
       </View>
 
-      <Text style={styles.footer}>
+      <Text style={[styles.footer, { paddingBottom: insets.bottom + 16 }]}>
         Always open to exciting opportunities and collaborations. Let's build something amazing together! 🚀
       </Text>
     </ScrollView>

@@ -1,4 +1,5 @@
 import { StyleSheet, ScrollView, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ThemedView } from '@/components/themed-view';
 
 const TechBadge = ({ label }: { label: string }) => (
@@ -8,13 +9,14 @@ const TechBadge = ({ label }: { label: string }) => (
 );
 
 export default function HomeScreen() {
+  const insets = useSafeAreaInsets();
   const technologies = [
     'React', 'React Native', 'Expo', 'TypeScript', 'JavaScript',
     'Node.js', 'Firebase', 'Git', 'REST APIs', 'Redux'
   ];
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container, { paddingTop: insets.top + 8 }]}>
       {/* Hero Section */}
       <View style={styles.hero}>
         <View style={styles.heroContent}>
@@ -93,7 +95,7 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      <Text style={styles.footer}>© {new Date().getFullYear()} Brian Leung • All rights reserved</Text>
+      <Text style={[styles.footer, { paddingBottom: insets.bottom + 16 }]}>© {new Date().getFullYear()} Brian Leung • All rights reserved</Text>
     </ScrollView>
   );
 }
